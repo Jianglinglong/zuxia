@@ -25,7 +25,7 @@ public class StringProcessor {
 			 Exception e = new Exception("子串只出现一次");
 			 throw e;
 		 }
-		 return src.substring(src.indexOf(splitStr), src.lastIndexOf(splitStr));
+		 return src.substring(src.indexOf(splitStr)+splitStr.length(), src.lastIndexOf(splitStr));
 	 }
 	 public static String reverse(String s1) throws Exception{
 		 StringBuffer s = new StringBuffer(s1);

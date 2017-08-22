@@ -6,7 +6,10 @@ public class StringFunctuin {
 			Exception e = new Exception("字符串为空");
 			throw e;
 		}
-		String [] strs = findWords.split(" +");
+		String [] strs = findWords.trim().split("(( +)[!,.]?( +)?)|([!,.]( +)?)");
+//		for(String s:strs) {
+//			System.out.println(s);
+//		}
 		return strs.length;
 	}
 	public int getStrsNumber(String src,String findStr) throws Exception{
