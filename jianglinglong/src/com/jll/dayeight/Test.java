@@ -8,17 +8,18 @@ import com.jll.dayeight.*;
 
 public class Test {
 	public static void main(String[] args) throws Exception {
-//		//双色球
-//		DoubleColorBolls bolls = new DoubleColorBolls();
-//		bolls.getBolls();
-//		bolls.show();
-//		//日历
-//		MyCalendar cal = new MyCalendar(1990,12);//默认时间为1970-01
-//		//默认以周日为第一天显示
-//		cal.show();
-//		//设置以每周第几天为日历第一列
-//		cal.show(1);
-//		//大小写转换
+		//双色球
+		DoubleColorBolls bolls = new DoubleColorBolls();
+		bolls.getBolls();
+		bolls.show();
+		//日历
+		MyCalendar cal = new MyCalendar(1990,11);//默认时间为1970-01
+		//设置以每周第几天为日历第一列.周日为0
+		cal.show(0);
+		cal.show(1);
+		cal.show(2);
+		cal.show(3);
+		//大小写转换
 //		String str = "sdfadsf";
 //		str = toUper(str);
 //		System.out.println(str);
