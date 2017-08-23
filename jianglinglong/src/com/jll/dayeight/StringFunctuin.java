@@ -1,5 +1,7 @@
 package com.jll.dayeight;
-import com.jll.dayeight.Countstr;
+
+import java.awt.color.CMMException;
+
 public class StringFunctuin {
 	public int getWordNumber(String findWords) throws Exception{
 		if(findWords==null|| findWords.length()==0) {

@@ -1,7 +1,6 @@
 package com.jll.dayeight;
 
 import java.io.IOException;
-import java.time.DayOfWeek;
 import java.util.Calendar;
 import java.util.Scanner;
 
