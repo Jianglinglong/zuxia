@@ -19,8 +19,9 @@ public class TestNewsInfo {
 				break;
 			case 3:
 				while(!delNews(list)) {
-					System.out.println("是否继续(y/n)");
-					if(getString().equals("n")) {
+					System.out.println("继续请输入(y/Y)");
+					String input = getString();
+					if(!(input.equals("y")||input.equals("Y"))) {
 						break;
 					}
 				}
