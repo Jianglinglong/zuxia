@@ -1,7 +1,6 @@
 package com.jll.dayeleven;
 
 import com.jll.dayeleven.MyException;
-
 import java.util.Scanner;
 
 public class Homework {
@@ -12,12 +11,11 @@ public class Homework {
             throw new MyException("请输入数字");
         }
     }
-    public static int main(String[] args) {
+    public static void main(String[] args) {
         try {
             Homework.getAge();
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-        return 0;
     }
 }
