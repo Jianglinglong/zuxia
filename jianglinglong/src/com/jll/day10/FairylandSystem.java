@@ -1,4 +1,4 @@
-package com.jll.day010;
+package com.jll.day10;
 
 import java.util.HashMap;
 import java.util.Map;

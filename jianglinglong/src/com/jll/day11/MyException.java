@@ -1,4 +1,4 @@
-package com.jll.day011;
+package com.jll.day11;
 
 public class MyException extends Exception {
     MyException(){

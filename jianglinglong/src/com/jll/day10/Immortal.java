@@ -1,4 +1,4 @@
-package com.jll.day010;
+package com.jll.day10;
 
 public class Immortal {
 	private String imName;
