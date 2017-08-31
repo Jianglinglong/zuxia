@@ -1,9 +1,10 @@
 package com.jll.datone;
+
 public class loop_1 {
 
 	/**
-	 * @author jlg
-	 * 
+	 *
+	 * @param args
 	 */
 	public static void main(String[] args) {
 		Dayone dayone = new Dayone();
@@ -11,12 +12,12 @@ public class loop_1 {
 		dayone.triangle(row);
 		dayone.linxing(row);
 		dayone.chenfa();
-		dayone.linxingnoborder(row);
+		dayone.linxingNoborder(row);
 //		Arrays.sort(a);
 	}
 }
 class Dayone{
-	public void linxingnoborder(int row){
+	public void linxingNoborder(int row){
 		int hang = 2*row;
 		for(int i = 0 ; i < hang ; i ++){
 			for(int j = 0 ; j < row ; j ++){
