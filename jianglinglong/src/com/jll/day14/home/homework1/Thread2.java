@@ -1,4 +1,4 @@
-package com.jll.day14.home;
+package com.jll.day14.home.homework1;
 
 public class Thread2 implements Runnable {
 	private int [] a;

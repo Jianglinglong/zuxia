@@ -1,4 +1,4 @@
-package com.jll.day14.home;
+package com.jll.day14.home.homework1;
 
 public class Thread1 extends Thread {
 	private int [] a;

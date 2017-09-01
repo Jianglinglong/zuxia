@@ -1,5 +1,4 @@
 package com.jll.day04;
-;
 public class Cat extends Animal {
 	private String sex;
 	private String name;
@@ -27,7 +26,7 @@ public class Cat extends Animal {
 	}
 	public void eat() {
 		System.out.println(name + "正在吃鱼");
-	};
+	}
 	public void eat(Animal obj) {
 		System.out.println(name + " is eating "+ obj.getName());
 	}
