@@ -1,16 +1,14 @@
 package com.jll.day14.home.homework4;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.InetAddress;
+import java.io.*;
 import java.net.Socket;
+import java.util.Set;
 
 public class GetMsgThread extends Thread {
     private Socket socket;
-    private byte[] ip;
+    private String ip;
 
-    public GetMsgThread(Socket socket, byte[] clientNum) {
+    public GetMsgThread(Socket socket, String clientNum) {
         this.socket = socket;
         this.ip = clientNum;
     }
@@ -18,22 +16,37 @@ public class GetMsgThread extends Thread {
     public void run() {
         BufferedReader getMsg = null;
         try {
-            String msg;
             //获取客户端消息
+            String msg;
+            PrintWriter sendMsg = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
             getMsg = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            while (true) {
-                if ((msg = getMsg.readLine()) != null) {
-                    System.out.println(msg);
+            while (( msg = getMsg.readLine())!=null) {
+//                if(Sever.clientMap.size()==0){
+//                    break;
+//                }
+                System.out.println(msg);
+                if (msg.equals("list")){
+                    Set<String> keySet = Sever.clientMap.keySet();
+                    for(String key : keySet){
+                        sendMsg.println(key + "," + Sever.clientMap.get(key));
+                        sendMsg.flush();
+                    }
                 }
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("Get:"+ip+"-" + e.getMessage());
+            try {
+                socket.close();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         } finally {
+            Sever.clientMap.remove(ip);
             try {
                 getMsg.close();
                 this.stop();
             } catch (IOException e) {
-                e.printStackTrace();
+
             }
         }
     }
