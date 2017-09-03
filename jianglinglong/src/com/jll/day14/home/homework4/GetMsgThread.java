@@ -21,16 +21,22 @@ public class GetMsgThread extends Thread {
             PrintWriter sendMsg = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
             getMsg = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             while (( msg = getMsg.readLine())!=null) {
-//                if(Sever.clientMap.size()==0){
-//                    break;
-//                }
                 System.out.println(msg);
+                String name = msg.substring(0, msg.indexOf(":"));
+                msg= msg.substring(msg.indexOf(":")+1);
                 if (msg.equals("list")){
+                	sendMsg.println(name+":你好，在线用户"+Sever.clientMap.size()+"共人.");
+                	sendMsg.flush();
                     Set<String> keySet = Sever.clientMap.keySet();
                     for(String key : keySet){
-                        sendMsg.println(key + "," + Sever.clientMap.get(key));
+                        sendMsg.println(ip+":"+ key + "," + Sever.clientMap.get(key));
                         sendMsg.flush();
                     }
+                }
+                if(msg.equals("exit")){
+                	sendMsg.print(ip+":再见"+name+",欢迎下次使用");
+                	sendMsg.flush();
+                	Sever.removeClient(name);
                 }
             }
         } catch (Exception e) {
@@ -41,10 +47,9 @@ public class GetMsgThread extends Thread {
                 e1.printStackTrace();
             }
         } finally {
-            Sever.clientMap.remove(ip);
+//            Sever.removeClient(ip);
             try {
                 getMsg.close();
-                this.stop();
             } catch (IOException e) {
 
             }

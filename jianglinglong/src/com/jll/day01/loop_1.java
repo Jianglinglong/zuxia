@@ -1,4 +1,4 @@
-package com.jll.datone;
+package com.jll.day01;
 public class loop_1 {
 
 	/**

@@ -1,7 +1,9 @@
 package com.jll.day14.home.homework3;
 
-import java.io.*;
-import java.net.InetAddress;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -15,7 +17,6 @@ public class Server {
             socket = serverSocket.accept();
             BufferedReader getMsgFormClient = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter sendMsgToClient = new PrintWriter(socket.getOutputStream());
-            BufferedReader getMsgFormConsle = new BufferedReader(new InputStreamReader(System.in));
             int count = 0;
             while (true) {
                 String msg = getMsgFormClient.readLine();

@@ -13,7 +13,7 @@ public class Client {
         Thread send;
         try {
             socket = new Socket(InetAddress.getLocalHost(), 9090);
-            String ip ;
+            String msgFromSever ;
             System.out.println("Client is start !");
             BufferedReader editMsg = new BufferedReader(new InputStreamReader(System.in));
             PrintWriter sendMsg = new PrintWriter(socket.getOutputStream());
@@ -24,12 +24,12 @@ public class Client {
             while (true) {
                 sendMsg.println(msg);
                 sendMsg.flush();
-                ip = getMsg.readLine();
-                if(ip.contains("list")){
-                    System.out.println(ip);
+                msgFromSever = getMsg.readLine();
+                if(msgFromSever.contains("list")){
+                    System.out.println(msgFromSever);
                     break;
                 }
-                System.out.println(ip);
+                System.out.println(msgFromSever);
                 msg = editMsg.readLine();
             }
             get = new GetMsgThread(socket, msg);
