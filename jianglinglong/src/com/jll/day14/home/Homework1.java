@@ -14,25 +14,11 @@ public class Homework1 {
 		try {
 			thread.join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		int sorted [] = t2.getA();
 		for(int i :sorted) {
 			System.out.println(i);
 		}
-//		Thread1 th1 = new Thread1(a);
-//		th1.start();
-//		try {
-//			th1.join();
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		int sorted [] = th1.getA();
-//		System.out.println("==================");
-//		for(int i :sorted) {
-//			System.out.println(i);
-//		}
 	}
 }
