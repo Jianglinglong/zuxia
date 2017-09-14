@@ -12,7 +12,7 @@ public class SendMsgThread extends Thread {
     private String ip;
     private boolean status = true;
 
-    public SendMsgThread(Socket socket ,String ip) {
+    public SendMsgThread(Socket socket, String ip) {
         this.socket = socket;
         this.ip = ip;
     }
@@ -28,34 +28,25 @@ public class SendMsgThread extends Thread {
             //创建标准输入流对象
             editMsg = new BufferedReader(new InputStreamReader(System.in));
             String msg;
-            while (!(msg = editMsg.readLine()).equals("exit")) {
-                sendMsg.println(msg);
-                sendMsg.flush();
-            }
-
-        } catch (Exception e) {
-            try {
-                editMsg.close();
-                sendMsg.close();
-            } catch (IOException e1) {
-                System.out.println("Send:" + e.getMessage());
-            }
-        } finally {
-            Set<String> keySet = Sever.clientMap.keySet();
-            for (String key :keySet){
-                String sk = Sever.clientMap.get(key).toString();
-                if(sk.equals(socket.toString())){
-                    ip=key;
+            while (true) {
+                if(socket==null || socket.isClosed()){
                     break;
                 }
+                msg = editMsg.readLine();
+                if (msg.equalsIgnoreCase("exit")) {
+                    break;
+                }
+                sendMsg.println(ip + ":" + msg);
+                sendMsg.flush();
             }
-            Sever.clientMap.remove(ip);
+            if (!socket.isClosed()){
+                socket.close();
+            }
             sendMsg.close();
-            try {
-                editMsg.close();
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
+            editMsg.close();
+            Sever.clientMap.remove(ip);
+        } catch (Exception e) {
+            System.out.println("Send:" + e.getMessage());
         }
     }
 

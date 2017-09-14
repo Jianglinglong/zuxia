@@ -21,11 +21,9 @@ public class GetMsgThread extends Thread {
             PrintWriter sendMsg = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
             getMsg = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             while (( msg = getMsg.readLine())!=null) {
-//                if(Sever.clientMap.size()==0){
-//                    break;
-//                }
                 System.out.println(msg);
-                if (msg.equals("list")){
+                msg = msg.substring(msg.indexOf(":")+1);
+                if (msg.equalsIgnoreCase("list")){
                     Set<String> keySet = Sever.clientMap.keySet();
                     for(String key : keySet){
                         sendMsg.println(key + "," + Sever.clientMap.get(key));
@@ -41,12 +39,14 @@ public class GetMsgThread extends Thread {
                 e1.printStackTrace();
             }
         } finally {
-            Sever.clientMap.remove(ip);
+
             try {
                 getMsg.close();
+                Sever.clientMap.get(ip).close();
+                Sever.clientMap.remove(ip);
                 this.stop();
             } catch (IOException e) {
-
+                e.printStackTrace();
             }
         }
     }
